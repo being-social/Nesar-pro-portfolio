@@ -20,10 +20,11 @@ nesar.build
 ```
 
 ## Context docs
-`_context/` holds the ideation doc and LinkedIn profile — source of truth for copy, positioning, and architecture decisions.
+`_context/` holds the ideation doc, LinkedIn profile, and deep AI agent context chat history — source of truth for copy, positioning, background, and architecture decisions.
 
 - [`_context/nesar_build_Portfolio_Ideation.md`](./_context/nesar_build_Portfolio_Ideation.md) — full blueprint: sitemap, Hermes architecture, visual identity, build order
 - [`_context/Nesar_LinkedIn_FINAL.md`](./_context/Nesar_LinkedIn_FINAL.md) — locked LinkedIn profile: experience, copy, skills
+- [`_context/Claude_Optimizing_LinkedIn_profile_for_product_manager_and_AI_startup.md`](./_context/Claude_Optimizing_LinkedIn_profile_for_product_manager_and_AI_startup.md) — deep context, audit, background, PRD, and alignment across Entelligence, Composio, and SuperAGI roles
 
 ## Build sessions
 1. **Session 1** — Identity tokens + Next.js scaffold + Home hero
