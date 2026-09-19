@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import { PROJECTS } from "@/lib/content/data";
 import { ArrowUpRight, CheckCircle, Code, Layers } from "lucide-react";
 
-export default function WorkDetailPage({ params }: { params: { slug: string } }) {
-  const project = PROJECTS.find((p) => p.slug === params.slug);
+export default async function WorkDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();

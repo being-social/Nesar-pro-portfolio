@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import { MOTION_PIECES } from "@/lib/content/data";
 import { Play } from "lucide-react";
 
-export default function MotionDetailPage({ params }: { params: { slug: string } }) {
-  const piece = MOTION_PIECES.find((p) => p.slug === params.slug);
+export default async function MotionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const piece = MOTION_PIECES.find((p) => p.slug === slug);
 
   if (!piece) {
     notFound();
