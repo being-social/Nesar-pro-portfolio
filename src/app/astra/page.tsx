@@ -15,7 +15,7 @@ export default function AstraPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "astra",
-      text: "Welcome to /astra. I'm Astra, Nesar's portfolio assistant. Who am I speaking with? (Recruiter, founder, or just snooping?)",
+      text: "Astra here. This prototype keeps our chat on your device. For a real reply, email nesar@nesar.build directly.",
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -61,7 +61,6 @@ export default function AstraPage() {
   const chips = [
     "I'm hiring",
     "I have a project",
-    "Book a call",
     "Just a question",
   ];
 
@@ -72,7 +71,7 @@ export default function AstraPage() {
           <Bot className="w-4 h-4 text-[var(--n-playhead)]" />
           <span>◇ ASTRA ASSISTANT ROUTE</span>
           <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--n-playhead-soft)]">
-            HOSTED / CLOUD MODE
+            LOCAL PROTOTYPE
           </span>
         </div>
         <h1 className="text-4xl font-medium tracking-tight">Ask Astra About Nesar</h1>
@@ -113,7 +112,7 @@ export default function AstraPage() {
               <button
                 key={idx}
                 onClick={() => handleSend(chip)}
-                className="whitespace-nowrap px-3 py-1.5 rounded-full border border-[var(--n-line)] hover:border-[var(--n-playhead)] hover:text-[var(--n-playhead)] transition-colors bg-[var(--n-paper-strong)]"
+                className="whitespace-nowrap px-3 py-1.5 rounded-full border border-[var(--n-line)] hover:border-[var(--n-playhead)] hover:text-[var(--n-playhead)] transition-colors text-[var(--n-graphite)]"
               >
                 {chip}
               </button>
