@@ -1,9 +1,29 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PROJECTS } from "@/lib/content/data";
-import { ArrowUpRight, CheckCircle, Code, Layers } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import type { Metadata } from 'next';
 
-export default async function WorkDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+type Props = {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
+  
+  if (!project) return {};
+
+  return {
+    title: `${project.title} — ${project.company} — Nesar`,
+    description: project.summary,
+    alternates: {
+      canonical: `/work/${slug}`,
+    }
+  };
+}
+
+export default async function WorkDetailPage({ params }: Props) {
   const { slug } = await params;
   const project = PROJECTS.find((p) => p.slug === slug);
 
@@ -45,63 +65,71 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
   const artifacts = subArtifacts[project.slug] || [];
 
   return (
-    <div className="space-y-12 py-8 max-w-4xl mx-auto">
-      <Link href="/work" className="text-xs font-mono text-[var(--n-playhead)] hover:underline">
+    <div className="space-y-16 py-16 px-4 sm:px-6 max-w-[1280px] mx-auto">
+      <Link href="/work" className="inline-flex min-h-[44px] items-center text-xs font-mono text-[var(--n-playhead)] hover:underline -ml-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] rounded-md">
         ← Back to Selected Work
       </Link>
 
-      <div className="space-y-4">
+      <div className="space-y-6 max-w-4xl">
         <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
           <span className="text-[var(--n-playhead)] font-semibold">{project.company}</span>
           <span>{project.year}</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-[var(--n-ink)]">
+        <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-[var(--n-ink)] leading-[1.1]">
           {project.title}
         </h1>
-        <p className="text-lg text-[var(--n-graphite)] font-serif italic">{project.thesis}</p>
+        <p className="text-xl md:text-2xl text-[var(--n-graphite)] font-serif italic max-w-3xl leading-relaxed">
+          {project.thesis}
+        </p>
 
         {project.publicUrl && (
-          <a
-            href={project.publicUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--n-playhead)] hover:underline pt-2 font-bold"
-          >
-            Visit Live Site <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          <div className="pt-2">
+            <a
+              href={project.publicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-mono text-[var(--n-playhead)] font-bold hover:underline transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] px-4 py-2 bg-[var(--n-paper)] border border-[var(--n-line)] rounded-lg"
+            >
+              Visit Live Site <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
         )}
       </div>
 
       {/* Sub-Artifacts Grid */}
       {artifacts.length > 0 && (
-        <div className="space-y-4 pt-6 border-t border-[var(--n-line)]">
+        <div className="space-y-6 pt-12 border-t border-[var(--n-line)]">
           <h3 className="text-xs font-mono text-[var(--n-graphite)] uppercase tracking-wider">
             Project Sub-Artifacts
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {artifacts.map((art, idx) => (
-              <div
+              <Link
                 key={idx}
-                className="p-4 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-2 hover:border-[var(--n-playhead)] transition-colors"
+                href={art.href}
+                className="group p-6 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-3 hover:border-[var(--n-playhead)] transition-all min-h-[44px] block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
               >
-                <h4 className="text-sm font-bold text-[var(--n-ink)]">{art.title}</h4>
-                <p className="text-xs text-[var(--n-graphite)]">{art.desc}</p>
-              </div>
+                <div className="flex items-start justify-between">
+                  <h4 className="text-base font-bold text-[var(--n-ink)] group-hover:text-[var(--n-playhead)] transition-colors">{art.title}</h4>
+                  <ArrowUpRight className="w-4 h-4 text-[var(--n-muted)] group-hover:text-[var(--n-playhead)] transition-colors" />
+                </div>
+                <p className="text-sm text-[var(--n-graphite)] leading-relaxed">{art.desc}</p>
+              </Link>
             ))}
           </div>
         </div>
       )}
 
       {/* Chapter Breakdown */}
-      <div className="space-y-8 pt-8 border-t border-[var(--n-line)]">
+      <div className="space-y-8 pt-12 border-t border-[var(--n-line)]">
         <h2 className="text-xs font-mono text-[var(--n-graphite)] uppercase tracking-wider">
           Case Study Chapters
         </h2>
 
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {chapters.map((ch) => (
-            <div key={ch.id} className="p-6 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-2">
-              <span className="text-xs font-mono text-[var(--n-playhead)] font-bold">{ch.id} / {ch.title}</span>
+            <div key={ch.id} className="p-6 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-3">
+              <span className="text-sm font-mono text-[var(--n-playhead)] font-bold block">{ch.id} / {ch.title}</span>
               <p className="text-sm text-[var(--n-graphite)] leading-relaxed">{ch.text}</p>
             </div>
           ))}

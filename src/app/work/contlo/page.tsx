@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Contlo Case Study — Nesar",
+  description: "Marketing design at Contlo.",
+  alternates: { canonical: "/work/contlo" }
+};
+
+
 export default function ContloCaseStudy() {
   return (
     <div className="space-y-12 py-12 max-w-4xl mx-auto">

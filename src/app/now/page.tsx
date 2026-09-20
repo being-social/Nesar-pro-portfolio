@@ -1,5 +1,14 @@
 import { NOW_DATA } from "@/lib/content/data";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Now — Nesar",
+  description: "What Nesar is doing right now.",
+  alternates: { canonical: "/now" }
+};
+
+
 export default function NowPage() {
   return (
     <div className="space-y-12 py-8 max-w-3xl mx-auto">

@@ -2,6 +2,15 @@ import Link from "next/link";
 import { Film, Play } from "lucide-react";
 import { MOTION_PIECES } from "@/lib/content/data";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Motion Archive — Nesar",
+  description: "Motion explorations and launch films.",
+  alternates: { canonical: "/motion" }
+};
+
+
 export default function MotionIndexPage() {
   return (
     <div className="space-y-12 py-8">

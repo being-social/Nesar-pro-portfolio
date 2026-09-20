@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Entelligence AI Case Study — Nesar",
+  description: "Founding design work at Entelligence AI.",
+  alternates: { canonical: "/work/entelligence" }
+};
+
+
 export default function EntelligenceCaseStudy() {
   return (
     <div className="space-y-12 py-12 max-w-4xl mx-auto">

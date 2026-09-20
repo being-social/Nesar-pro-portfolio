@@ -1,5 +1,14 @@
 import { FlaskConical, Terminal, Film, Cpu } from "lucide-react";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Lab — Nesar",
+  description: "Design engineering lab experiments.",
+  alternates: { canonical: "/lab" }
+};
+
+
 export default function LabPage() {
   const experiments = [
     {

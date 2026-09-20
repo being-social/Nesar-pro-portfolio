@@ -2,6 +2,15 @@ import Link from "next/link";
 import { ArrowUpRight, Layers } from "lucide-react";
 import { PROJECTS } from "@/lib/content/data";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Selected Work — Nesar",
+  description: "Portfolio case studies across engineering and design.",
+  alternates: { canonical: "/work" }
+};
+
+
 export default function WorkIndexPage() {
   return (
     <div className="space-y-16 py-8 max-w-6xl mx-auto">

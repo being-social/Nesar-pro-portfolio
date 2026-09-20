@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Composio Case Study — Nesar",
+  description: "Design through a year of launches at Composio.",
+  alternates: { canonical: "/work/composio" }
+};
+
+
 export default function ComposioCaseStudy() {
   return (
     <div className="space-y-12 py-12 max-w-4xl mx-auto">

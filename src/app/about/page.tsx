@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "About — Nesar",
+  description: "Mechanical engineer to design engineer.",
+  alternates: { canonical: "/about" }
+};
+
+
 export default function AboutPage() {
   const principles = [
     { num: "01", title: "Motion is the artifact", text: "The interface stays quiet so launch films, motion studies, and transitions have room to feel important." },

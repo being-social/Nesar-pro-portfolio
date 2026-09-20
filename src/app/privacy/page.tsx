@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Privacy — Nesar",
+  description: "Privacy policy for nesar.build.",
+  alternates: { canonical: "/privacy" }
+};
+
 export default function PrivacyPage() {
   return (
     <div className="space-y-8 py-8 max-w-3xl mx-auto font-sans text-sm">
