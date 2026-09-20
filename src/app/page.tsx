@@ -198,7 +198,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 6 & 7: LAB & HERMES TEASERS */}
+      {/* SECTION 6 & 7: LAB & ASTRA TEASERS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <section className="p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-4">
           <div className="flex justify-between items-center text-xs font-mono">
@@ -219,18 +219,18 @@ export default function HomePage() {
 
         <section className="p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-4">
           <div className="flex justify-between items-center text-xs font-mono">
-            <span className="text-[var(--n-graphite)]">06 / HERMES AGENT</span>
+            <span className="text-[var(--n-graphite)]">06 / ASTRA AGENT</span>
             <span className="text-[var(--n-playhead)] font-semibold">◇ ONLINE</span>
           </div>
           <h3 className="text-xl font-medium">Ask the Portfolio Agent</h3>
           <p className="text-xs text-[var(--n-graphite)] leading-relaxed">
-            Hermes knows the public version of Nesar's work, the $25M Composio deck, and AI agent builds.
+            Astra knows the public version of Nesar's work, the $25M Composio deck, and AI agent builds.
           </p>
           <Link
-            href="/hermes"
+            href="/astra"
             className="inline-flex items-center gap-1 text-xs font-mono text-[var(--n-playhead)] hover:underline pt-2 font-semibold"
           >
-            Talk to Hermes →
+            Talk to Astra →
           </Link>
         </section>
       </div>

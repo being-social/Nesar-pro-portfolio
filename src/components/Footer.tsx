@@ -33,8 +33,8 @@ export function Footer() {
           <Link href="/privacy" className="hover:text-[var(--n-ink)] transition-colors">
             Privacy
           </Link>
-          <Link href="/hermes" className="text-[var(--n-playhead)] hover:underline">
-            ◇ Hermes Agent
+          <Link href="/astra" className="text-[var(--n-playhead)] hover:underline">
+            ◇ Astra Agent
           </Link>
         </div>
 

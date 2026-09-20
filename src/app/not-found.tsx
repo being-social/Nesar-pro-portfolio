@@ -12,16 +12,16 @@ export default function NotFoundPage() {
         <div className="space-y-2">
           <h1 className="text-3xl font-medium text-[var(--n-ink)]">Lost?</h1>
           <p className="text-sm text-[var(--n-graphite)]">
-            Hermes has a few good explanations. Want to ask him something instead?
+            Astra has a few good explanations. Want to ask her something instead?
           </p>
         </div>
 
         <Link
-          href="/hermes"
+          href="/astra"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-[var(--n-radius-control)] bg-[var(--n-charcoal)] text-[var(--n-paper)] font-mono text-xs font-semibold hover:opacity-90 transition-opacity shadow-xs"
         >
           <Command className="w-3.5 h-3.5 text-[var(--n-playhead)]" />
-          Ask Hermes instead
+          Ask Astra instead
         </Link>
 
         <div className="pt-8 text-xs font-mono text-[var(--n-muted)]">

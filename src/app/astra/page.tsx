@@ -4,18 +4,18 @@ import { useState } from "react";
 import { Send, Bot, Sparkles, CheckCircle } from "lucide-react";
 
 interface Message {
-  sender: "user" | "hermes";
+  sender: "user" | "astra";
   text: string;
 }
 
-export default function HermesPage() {
+export default function AstraPage() {
   const [visitorName, setVisitorName] = useState("");
   const [nameCaptured, setNameCaptured] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
-      sender: "hermes",
-      text: "Welcome to /hermes. I'm Nesar's portfolio agent. Who am I speaking with? (Recruiter, founder, or just snooping?)",
+      sender: "astra",
+      text: "Welcome to /astra. I'm Astra, Nesar's portfolio assistant. Who am I speaking with? (Recruiter, founder, or just snooping?)",
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ export default function HermesPage() {
         ...prev,
         { sender: "user", text },
         {
-          sender: "hermes",
+          sender: "astra",
           text: `Got it, ${text.trim()}. Ask me about Nesar's work at Entelligence AI, the $25M Composio deck, his AI agent builds, or his design-engineering stack.`,
         },
       ]);
@@ -44,25 +44,25 @@ export default function HermesPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/hermes", {
+      const res = await fetch("/api/astra", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text, visitorName }),
       });
       const data = await res.json();
-      setMessages((prev) => [...prev, { sender: "hermes", text: data.response || "Something broke." }]);
+      setMessages((prev) => [...prev, { sender: "astra", text: data.response || "Something broke." }]);
     } catch {
-      setMessages((prev) => [...prev, { sender: "hermes", text: "Network glitch. Try asking again." }]);
+      setMessages((prev) => [...prev, { sender: "astra", text: "Network glitch. Try asking again." }]);
     } finally {
       setLoading(false);
     }
   };
 
   const chips = [
-    "The $25M deck story",
-    "What is he building now?",
-    "Is he available?",
-    "His tech stack",
+    "I'm hiring",
+    "I have a project",
+    "Book a call",
+    "Just a question",
   ];
 
   return (
@@ -70,14 +70,14 @@ export default function HermesPage() {
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-xs font-mono text-[var(--n-playhead)] font-semibold">
           <Bot className="w-4 h-4 text-[var(--n-playhead)]" />
-          <span>◇ HERMES AGENT ROUTE</span>
+          <span>◇ ASTRA ASSISTANT ROUTE</span>
           <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--n-playhead-soft)]">
             HOSTED / CLOUD MODE
           </span>
         </div>
-        <h1 className="text-4xl font-medium tracking-tight">Ask Hermes About Nesar</h1>
+        <h1 className="text-4xl font-medium tracking-tight">Ask Astra About Nesar</h1>
         <p className="text-xs font-mono text-[var(--n-graphite)]">
-          Scope-locked portfolio agent. Answers questions about Nesar's work, projects, and design engineering.
+          Scope-locked portfolio assistant. Answers questions about Nesar's work, projects, and design engineering.
         </p>
       </div>
 
@@ -94,17 +94,17 @@ export default function HermesPage() {
           {messages.map((msg, i) => (
             <div key={i} className={`flex flex-col ${msg.sender === "user" ? "items-end" : "items-start"}`}>
               <div
-                className={`max-w-[85%] p-4 rounded-[var(--n-radius-card)] leading-relaxed ${
+                className={`max-w-[85%] p-4 rounded-[var(--n-radius-card)] leading-relaxed font-sans text-sm ${
                   msg.sender === "user"
-                    ? "bg-[var(--n-charcoal)] text-[var(--n-paper)]"
-                    : "bg-[var(--n-paper-strong)] border border-[var(--n-line)] text-[var(--n-ink)]"
+                    ? "bg-[#1f1e1e] text-[#ffffff] border border-[#1f1e1e]"
+                    : "bg-[#ffffff] text-[#1f1e1e] border border-[rgb(232,232,232)]"
                 }`}
               >
                 {msg.text}
               </div>
             </div>
           ))}
-          {loading && <div className="text-[var(--n-muted)] animate-pulse">Hermes is typing...</div>}
+          {loading && <div className="text-[var(--n-muted)] animate-pulse font-mono text-xs">Astra is typing...</div>}
         </div>
 
         {nameCaptured && (

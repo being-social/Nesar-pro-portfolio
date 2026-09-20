@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Sun, Moon, Bot, Play } from "lucide-react";
 
-export function Navbar({ onOpenHermes }: { onOpenHermes: () => void }) {
+export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
   const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
 
@@ -92,13 +92,13 @@ export function Navbar({ onOpenHermes }: { onOpenHermes: () => void }) {
             ))}
           </div>
 
-          {/* Hermes Launcher */}
+          {/* Astra Launcher */}
           <button
-            onClick={onOpenHermes}
+            onClick={onOpenAstra}
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-playhead)] text-xs font-mono transition-all shadow-xs"
           >
             <span className="w-2 h-2 rounded-full bg-[var(--n-playhead)] animate-pulse" />
-            <span className="text-[var(--n-ink)] font-semibold">◇ HERMES</span>
+            <span className="text-[var(--n-ink)] font-semibold">◇ ASTRA</span>
           </button>
 
           {/* Theme Switcher */}
