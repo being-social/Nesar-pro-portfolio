@@ -8,26 +8,45 @@
 
     --n-ink: #1f1e1e;
     --n-charcoal: #5e636e;
-    --n-graphite: #565d63; /* Fixed for a11y contrast (was rgba(0,0,0,.4)) */
-    --n-muted: rgba(0, 0, 0, 0.4); /* Used strictly for decorative/border when allowed */
+    --n-graphite: #565d63; /* Fixed for a11y contrast to 4.5:1 */
+    --n-muted: rgba(0, 0, 0, 0.4);
 
     --n-line: rgb(232, 232, 232);
     --n-line-soft: rgba(0, 0, 0, 0.06);
 
-    --n-playhead: #1f1e1e;
-    --n-playhead-hover: #5e636e;
-    --n-playhead-soft: #f2f2f4;
-    --n-playhead-faint: #ffffff;
+    --n-playhead: #315CFF; /* Restored Playhead Blue signature */
+    --n-playhead-hover: #214AE8;
+    --n-playhead-soft: #E7ECFF;
+    --n-playhead-faint: #F1F4FF;
 
     --n-glass: rgba(255, 255, 255, 0.58);
     --n-glass-strong: rgba(255, 255, 255, 0.95);
-    --n-selection: rgba(31, 30, 30, 0.16);
+    --n-selection: rgba(49, 92, 255, 0.16);
 
     --n-radius-control: 8px;
-    --n-radius-film: 16px;
-    --n-radius-card: 24px;
+    --n-radius-film: 12px;
+    --n-radius-card: 16px;
     --n-radius-panel: 24px;
     --n-radius-pill: 999px;
+  }
+}
+
+/* Dark mode mapping */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --n-canvas: #0D0F10;
+    --n-paper: #131618;
+    --n-paper-strong: #181B1E;
+
+    --n-ink: #F5F6F2;
+    --n-charcoal: #E7E9E6;
+    --n-graphite: #A4ABB0;
+    --n-muted: #737B82;
+
+    --n-line: #292E32;
+    --n-line-soft: #202428;
+
+    --n-playhead: #718BFF;
   }
 }
 
@@ -38,21 +57,21 @@ body {
   padding: 0;
   overflow-x: hidden;
   min-height: 100vh;
-}
-
-/* Reduced motion - stop infinite animations */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  letter-spacing: -0.012em; /* Removed global -0.05em */
 }
 
 /* Focus visible system */
 :focus-visible {
   outline: 2px solid var(--n-playhead) !important;
   outline-offset: 3px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 ::selection {
@@ -73,4 +92,20 @@ body {
 }
 .skip-link:focus {
   top: 16px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--n-line);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--n-graphite);
 }
