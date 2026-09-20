@@ -2,81 +2,45 @@
 
 @layer base {
   :root {
-    --n-canvas: #F3F4F0;
-    --n-paper: #FCFCFA;
-    --n-paper-strong: #FFFFFF;
+    --n-canvas: #fcfcfc;
+    --n-paper: #f2f2f4;
+    --n-paper-strong: #ffffff;
 
-    --n-ink: #0B0D0E;
-    --n-charcoal: #191C1F;
-    --n-graphite: #565D63;
-    --n-muted: #8C9399;
+    --n-ink: #1f1e1e;
+    --n-charcoal: #5e636e;
+    --n-graphite: rgba(0, 0, 0, 0.4);
+    --n-muted: rgba(0, 0, 0, 0.2);
 
-    --n-line: #DFE2DF;
-    --n-line-soft: #E9EBE8;
+    --n-line: rgb(232, 232, 232);
+    --n-line-soft: rgba(0, 0, 0, 0.06);
 
-    --n-playhead: #315CFF;
-    --n-playhead-hover: #214AE8;
-    --n-playhead-soft: #E7ECFF;
-    --n-playhead-faint: #F1F4FF;
+    --n-playhead: #1f1e1e;
+    --n-playhead-hover: #5e636e;
+    --n-playhead-soft: #f2f2f4;
+    --n-playhead-faint: #ffffff;
 
     --n-glass: rgba(255, 255, 255, 0.58);
-    --n-glass-strong: rgba(255, 255, 255, 0.78);
-    --n-selection: rgba(49, 92, 255, 0.16);
+    --n-glass-strong: rgba(255, 255, 255, 0.95);
+    --n-selection: rgba(31, 30, 30, 0.16);
 
     --n-radius-control: 8px;
-    --n-radius-film: 12px;
-    --n-radius-card: 16px;
+    --n-radius-film: 16px;
+    --n-radius-card: 24px;
     --n-radius-panel: 24px;
     --n-radius-pill: 999px;
 
-    --n-dur-instant: 100ms;
-    --n-dur-fast: 160ms;
-    --n-dur-ui: 240ms;
-    --n-dur-layout: 320ms;
-    --n-dur-reveal: 480ms;
-    --n-dur-route: 560ms;
-    --n-dur-story: 760ms;
-
-    --n-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --n-ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
-    --n-ease-snap: cubic-bezier(0.2, 0.9, 0.25, 1);
-
-    --n-shadow-float: 0 1px 2px rgba(10, 13, 14, 0.05), 0 12px 32px rgba(10, 13, 14, 0.05);
-  }
-
-  [data-theme="dark"],
-  .dark {
-    --n-canvas: #0D0F10;
-    --n-paper: #131618;
-    --n-paper-strong: #181B1E;
-
-    --n-ink: #F5F6F2;
-    --n-charcoal: #E7E9E6;
-    --n-graphite: #A4ABB0;
-    --n-muted: #737B82;
-
-    --n-line: #292E32;
-    --n-line-soft: #202428;
-
-    --n-playhead: #718BFF;
-    --n-playhead-hover: #8EA3FF;
-    --n-playhead-soft: #1B254D;
-    --n-playhead-faint: #141A2C;
-
-    --n-glass: rgba(22, 25, 28, 0.6);
-    --n-glass-strong: rgba(22, 25, 28, 0.8);
-    --n-selection: rgba(113, 139, 255, 0.2);
+    --font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 }
 
 body {
   background-color: var(--n-canvas);
   color: var(--n-ink);
-  font-family: var(--font-sans), "DM Sans", -apple-system, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  transition: background-color 0.24s var(--n-ease-out), color 0.24s var(--n-ease-out);
+  min-height: 100vh;
 }
 
 .font-mono {

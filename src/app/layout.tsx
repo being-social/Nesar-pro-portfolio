@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="min-h-screen flex flex-col justify-between antialiased">
         <Navbar onOpenAstra={() => setAstraOpen(true)} />
-        <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8">{children}</main>
+        <main className="flex-1 w-full mx-auto">{children}</main>
         <Footer />
         <AstraDrawer isOpen={astraOpen} onClose={() => setAstraOpen(false)} />
       </body>

@@ -1,258 +1,205 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowUpRight, Play, Film, Layers, Code, Sparkles } from "lucide-react";
-import { PROJECTS, MOTION_PIECES, EXPERIMENTS } from "@/lib/content/data";
+import { ArrowUpRight } from "lucide-react";
 
 export default function HomePage() {
-  const practiceRange = [
-    { title: "Motion", desc: "Launch films, interface motion, kinetic typography & 60fps timing passes." },
-    { title: "Product", desc: "Developer tools, AI code review surfaces, dashboards & user activation." },
-    { title: "Web", desc: "Next.js, TypeScript, React 19, Tailwind v4 & custom transition engines." },
-    { title: "Systems", desc: "Tokenization, component libraries, Hermes agents & WhatsApp automation." },
-  ];
-
-  const processSteps = [
-    { step: "01", name: "brief", detail: "Understand the core strategic goal" },
-    { step: "02", name: "direction", detail: "Establish mood, visual hierarchy & motion tone" },
-    { step: "03", name: "frames", detail: "Keyframe design & storyboard composition" },
-    { step: "04", name: "system", detail: "Build reusable design & motion tokens" },
-    { step: "05", name: "motion", detail: "Timing passes, easing curves & fluid transitions" },
-    { step: "06", name: "build", detail: "Ship in clean Next.js, React 19 & Tailwind" },
-    { step: "07", name: "ship", detail: "Verification, deployment & production validation" },
-  ];
-
   return (
-    <div className="space-y-24 py-8">
-      {/* HERO SECTION (§12 of Design System) */}
-      <section className="space-y-8">
-        <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)] border-b border-[var(--n-line-soft)] pb-4">
-          <span>[00:00:00:00]</span>
-          <span className="text-[var(--n-playhead)] font-semibold tracking-wider">
-            MOTION DESIGNER · DESIGN ENGINEER
-          </span>
-          <span className="hidden sm:inline">24 FPS · 1080P</span>
-        </div>
+    <div className="space-y-32">
+      {/* 1. Hero Section */}
+      <section className="max-w-[1200px] mx-auto pt-44 px-6 text-center">
+        <h1 className="text-6xl md:text-[clamp(64px,9.5vw,148px)] leading-[1.05] font-semibold text-[#1f1e1e] tracking-tight">
+          From first frame <br /> to shipped code
+        </h1>
+        <p className="mt-8 text-xl md:text-2xl text-[rgba(0,0,0,0.5)] font-medium max-w-2xl mx-auto leading-relaxed">
+          Designer who builds, for AI products
+        </p>
 
-        <div className="space-y-6 max-w-4xl">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-medium tracking-tight leading-[1.05] text-[var(--n-ink)]">
-            I make things move. <br />
-            Then I make them <span className="text-[var(--n-playhead)] italic font-serif">real.</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-[var(--n-graphite)] max-w-2xl leading-relaxed">
-            I’m Nesar — a motion designer and design engineer shaping AI products across product, brand, web, and launch motion. I code when the idea needs to become real.
-          </p>
-
-          <div className="flex items-center gap-4 pt-2">
-            <Link
-              href="/work"
-              className="px-6 py-3 rounded-[var(--n-radius-control)] bg-[var(--n-charcoal)] text-[var(--n-paper)] font-medium text-sm hover:opacity-90 transition-opacity shadow-xs"
-            >
-              View work
-            </Link>
-            <Link
-              href="/motion"
-              className="px-6 py-3 rounded-[var(--n-radius-control)] border border-[var(--n-line)] hover:border-[var(--n-playhead)] text-[var(--n-playhead)] font-mono text-sm flex items-center gap-2 transition-colors"
-            >
-              <Play className="w-4 h-4 fill-[var(--n-playhead)]" /> Play reel
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: REEL / MOVING PROOF */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-between border-b border-[var(--n-line)] pb-3">
-          <h2 className="text-xs font-mono text-[var(--n-graphite)] uppercase tracking-wider flex items-center gap-2">
-            <Film className="w-4 h-4 text-[var(--n-playhead)]" />
-            01 / Motion Proof
-          </h2>
-          <Link href="/motion" className="text-xs font-mono text-[var(--n-playhead)] hover:underline">
-            View motion archive →
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {MOTION_PIECES.map((piece) => (
-            <Link
-              key={piece.slug}
-              href={`/motion/${piece.slug}`}
-              className="group p-4 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-playhead)] transition-all flex flex-col justify-between space-y-4 shadow-xs"
-            >
-              <div className="aspect-video bg-[var(--n-paper-strong)] border border-[var(--n-line-soft)] rounded-[var(--n-radius-film)] p-4 flex flex-col justify-between relative overflow-hidden group-hover:shadow-md transition-shadow">
-                <div className="flex justify-between text-[10px] font-mono text-[var(--n-muted)] z-10">
-                  <span>{piece.duration}</span>
-                  <span>{piece.fps} FPS</span>
-                </div>
-                <div className="flex items-center justify-center z-10">
-                  <div className="w-10 h-10 rounded-full bg-[var(--n-playhead-soft)] flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Play className="w-4 h-4 text-[var(--n-playhead)] fill-[var(--n-playhead)]" />
-                  </div>
-                </div>
-                <div className="text-[10px] font-mono text-[var(--n-playhead)] font-semibold z-10">
-                  {piece.client}
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <h3 className="text-base font-bold text-[var(--n-ink)] group-hover:text-[var(--n-playhead)] transition-colors">
-                  {piece.title}
-                </h3>
-                <p className="text-xs text-[var(--n-graphite)] line-clamp-2">{piece.summary}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 3: SELECTED WORK */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-between border-b border-[var(--n-line)] pb-3">
-          <h2 className="text-xs font-mono text-[var(--n-graphite)] uppercase tracking-wider flex items-center gap-2">
-            <Layers className="w-4 h-4 text-[var(--n-playhead)]" />
-            02 / Selected Work
-          </h2>
-          <Link href="/work" className="text-xs font-mono text-[var(--n-playhead)] hover:underline">
-            View all work →
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROJECTS.filter((p) => p.featured).map((project) => (
-            <Link
-              key={project.slug}
-              href={`/work/${project.slug}`}
-              className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-playhead)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-[var(--n-playhead)] font-semibold">{project.company}</span>
-                  <span className="text-[var(--n-muted)]">{project.year}</span>
-                </div>
-                <h3 className="text-2xl font-medium tracking-tight text-[var(--n-ink)] group-hover:text-[var(--n-playhead)] transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-[var(--n-graphite)] leading-relaxed">{project.thesis}</p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 pt-2 border-t border-[var(--n-line-soft)]">
-                {project.disciplines.map((d, i) => (
-                  <span
-                    key={i}
-                    className="text-[11px] font-mono px-2.5 py-1 rounded-[var(--n-radius-pill)] border border-[var(--n-line)] text-[var(--n-graphite)] bg-[var(--n-paper-strong)]"
-                  >
-                    {d}
-                  </span>
-                ))}
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 4: PRACTICE RANGE */}
-      <section className="space-y-6">
-        <div className="border-b border-[var(--n-line)] pb-3">
-          <h2 className="text-xs font-mono text-[var(--n-graphite)] uppercase tracking-wider flex items-center gap-2">
-            <Code className="w-4 h-4 text-[var(--n-playhead)]" />
-            03 / Across The Frame
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {practiceRange.map((p, i) => (
-            <div
-              key={i}
-              className="p-6 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-2 shadow-xs"
-            >
-              <span className="text-xs font-mono text-[var(--n-playhead)] font-bold">0{i + 1}</span>
-              <h3 className="text-lg font-medium text-[var(--n-ink)]">{p.title}</h3>
-              <p className="text-xs text-[var(--n-graphite)] leading-relaxed">{p.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 5: PROCESS STORYBOARD */}
-      <section className="space-y-6">
-        <div className="border-b border-[var(--n-line)] pb-3">
-          <h2 className="text-xs font-mono text-[var(--n-graphite)] uppercase tracking-wider">
-            04 / How The Work Gets Made
-          </h2>
-        </div>
-
-        <div className="flex items-center gap-3 overflow-x-auto pb-4 font-mono text-xs">
-          {processSteps.map((s, idx) => (
-            <div key={idx} className="flex items-center gap-3 shrink-0">
-              <div className="p-4 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] w-48 space-y-1">
-                <span className="text-[10px] text-[var(--n-playhead)]">{s.step}</span>
-                <h4 className="font-bold text-[var(--n-ink)]">{s.name}</h4>
-                <p className="text-[11px] text-[var(--n-muted)] font-sans">{s.detail}</p>
-              </div>
-              {idx < processSteps.length - 1 && (
-                <span className="text-[var(--n-line)] font-bold">→</span>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 6 & 7: LAB & ASTRA TEASERS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <section className="p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-4">
-          <div className="flex justify-between items-center text-xs font-mono">
-            <span className="text-[var(--n-graphite)]">05 / LAB EXPERIMENTS</span>
-            <span className="text-[var(--n-playhead)] font-semibold">STABLE / WIP</span>
-          </div>
-          <h3 className="text-xl font-medium">Visual & Motion Experiments</h3>
-          <p className="text-xs text-[var(--n-graphite)] leading-relaxed">
-            Easing curve inspectors, playhead transition wipes, ASCII image resolvers, and glass controls.
-          </p>
+        <div className="flex justify-center gap-4 mt-10">
           <Link
-            href="/lab"
-            className="inline-flex items-center gap-1 text-xs font-mono text-[var(--n-playhead)] hover:underline pt-2 font-semibold"
+            href="/work"
+            className="px-6 py-4 rounded-[16px] bg-[#1f1e1e] text-white font-medium hover:opacity-90 transition-opacity"
           >
-            Explore the Lab →
+            See the work
           </Link>
-        </section>
-
-        <section className="p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-4">
-          <div className="flex justify-between items-center text-xs font-mono">
-            <span className="text-[var(--n-graphite)]">06 / ASTRA AGENT</span>
-            <span className="text-[var(--n-playhead)] font-semibold">◇ ONLINE</span>
-          </div>
-          <h3 className="text-xl font-medium">Ask the Portfolio Agent</h3>
-          <p className="text-xs text-[var(--n-graphite)] leading-relaxed">
-            Astra knows the public version of Nesar's work, the $25M Composio deck, and AI agent builds.
-          </p>
           <Link
+            href="/motion"
+            className="px-6 py-4 rounded-[16px] bg-transparent text-[#1f1e1e] border border-[#1f1e1e] font-medium hover:bg-[#1f1e1e] hover:text-white transition-colors"
+          >
+            Watch the reel
+          </Link>
+        </div>
+
+        {/* Hero Visual Abstract */}
+        <div className="relative mt-20 rounded-[24px] overflow-hidden bg-gradient-to-b from-[#f2f2f4] to-[#1f1e1e] aspect-[16/9] max-w-5xl mx-auto shadow-xl">
+          <div className="absolute inset-[16%] rounded-full border border-[rgba(255,255,255,0.25)]"></div>
+          <div className="absolute inset-[30%] rounded-full bg-[radial-gradient(circle_at_36%_30%,#fff,#8f8f8f_55%,#1f1e1e)] shadow-2xl"></div>
+          <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-[rgba(255,255,255,0.8)] shadow-[0_0_24px_rgba(255,255,255,0.8)] -translate-x-1/2"></div>
+        </div>
+      </section>
+
+      {/* 2. I don't hand it off */}
+      <section className="max-w-[1200px] mx-auto px-6">
+        <h2 className="text-4xl md:text-5xl font-semibold text-[#1f1e1e] mb-4">
+          I don’t hand it off.
+        </h2>
+        <p className="text-xl text-[rgba(0,0,0,0.5)] max-w-3xl mb-12">
+          Founding designer at Entelligence AI, previously the only designer at Composio.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Card 1 */}
+          <div className="relative rounded-[24px] overflow-hidden bg-[#1f1e1e] min-h-[420px] p-8 flex flex-col justify-end text-white">
+            <div className="absolute inset-0 grid place-items-center opacity-70">
+              <div className="w-[58%] aspect-square rounded-full bg-[radial-gradient(circle_at_36%_30%,#fff,#8f8f8f_52%,#1f1e1e)]"></div>
+            </div>
+            <div className="relative z-10 text-2xl font-medium max-w-[18ch] leading-tight">
+              Launch films that explain what the product actually does
+            </div>
+          </div>
+
+          <div className="grid gap-4">
+            {/* Card 2 */}
+            <div className="relative rounded-[24px] overflow-hidden bg-[#f2f2f4] min-h-[202px] p-8 flex flex-col justify-between">
+              <div className="text-2xl font-medium max-w-[18ch] text-[#1f1e1e] leading-tight">
+                Product design for developer-facing AI
+              </div>
+              <div className="mt-8 flex gap-2">
+                <span className="w-12 h-2 bg-[#d4d4d4] rounded-full"></span>
+                <span className="w-8 h-2 bg-[#a4a4a5] rounded-full"></span>
+                <span className="w-16 h-2 bg-[#1f1e1e] rounded-full"></span>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative rounded-[24px] overflow-hidden bg-[#f2f2f4] min-h-[202px] p-8 flex flex-col justify-between">
+              <div className="text-2xl font-medium max-w-[18ch] text-[#1f1e1e] leading-tight">
+                Websites designed and shipped in code
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. The Entelligence Spotlight */}
+      <section className="max-w-[1200px] mx-auto px-6">
+        <div className="rounded-[24px] bg-[#f2f2f4] p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 className="text-3xl md:text-5xl font-semibold text-[#1f1e1e] leading-tight mb-6">
+              One designer,<br /> a whole company’s surface
+            </h3>
+            <div className="space-y-6">
+              <p className="text-[rgba(0,0,0,0.5)] text-lg">
+                The product experience for a reliability engine, plus the brand it all sits inside. Built by the same person, so they never argued with each other.
+              </p>
+              <Link
+                href="/work/entelligence"
+                className="inline-block px-6 py-4 rounded-[16px] bg-[#1f1e1e] text-white font-medium hover:opacity-90 transition-opacity"
+              >
+                Read the case study
+              </Link>
+            </div>
+          </div>
+          <div className="rounded-[24px] overflow-hidden bg-white border border-[#e8e8e8] aspect-[4/3] relative">
+            <div className="absolute left-[8%] right-[8%] top-[14%] bottom-0 rounded-t-[16px] bg-[#1f1e1e]"></div>
+            <div className="absolute left-[16%] right-[16%] top-[32%] bottom-0 rounded-t-[12px] bg-[#f2f2f4]"></div>
+            <div className="absolute left-[24%] right-[24%] top-[52%] bottom-0 rounded-t-[10px] bg-white border border-[#e8e8e8]"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. What I can do for you */}
+      <section className="max-w-[1200px] mx-auto px-6">
+        <div className="mb-12">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#1f1e1e] mb-4">
+            What I can do for you
+          </h2>
+          <p className="text-xl text-[rgba(0,0,0,0.5)] max-w-2xl">
+            Six things, all done by the same person. Nothing gets lost between the idea and the browser.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { title: "Product UI and UX", desc: "Research, wireframes, prototypes and final screens for developer-facing AI products." },
+            { title: "Websites", desc: "Marketing sites and landing pages, from information architecture to the live build." },
+            { title: "Launch videos", desc: "Films that make a product make sense on launch day: script, storyboard, styleframes, final cut." },
+            { title: "Motion graphics", desc: "Product explainers, interface motion, title work, 3D modelling and rendering." },
+            { title: "Shipping it in code", desc: "Next.js, React and Tailwind for the pages; design systems with tokens." },
+            { title: "SEO and content", desc: "Three years in digital marketing before design. SEO, programmatic SEO, analytics." },
+          ].map((item, idx) => (
+            <div key={idx} className="bg-[#f2f2f4] rounded-[24px] p-8">
+              <div className="w-10 h-10 rounded-full bg-white border border-[#e8e8e8] flex items-center justify-center mb-6">
+                <span className="w-3 h-3 bg-[#1f1e1e] rounded-sm"></span>
+              </div>
+              <h3 className="text-xl font-bold text-[#1f1e1e] mb-2">{item.title}</h3>
+              <p className="text-[rgba(0,0,0,0.5)] leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. Selected Work */}
+      <section className="max-w-[1200px] mx-auto px-6">
+        <h2 className="text-4xl md:text-5xl font-semibold text-[#1f1e1e] mb-12">
+          Selected work
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Link href="/work/entelligence" className="group rounded-[24px] bg-[#1f1e1e] p-8 text-white flex flex-col justify-between min-h-[300px] hover:opacity-95 transition-opacity block">
+            <div>
+              <h3 className="text-2xl font-semibold mb-2">Entelligence AI</h3>
+              <p className="text-[rgba(255,255,255,0.7)] leading-relaxed">
+                Founding designer. Product, brand, the live website, launch films, Wrapped, the Leaderboard and the fundraising deck.
+              </p>
+            </div>
+            <div className="text-[rgba(255,255,255,0.4)] text-sm font-mono mt-8">
+              2025 to present · 6 artifacts
+            </div>
+          </Link>
+
+          <div className="grid gap-4 md:col-span-2 grid-cols-1 sm:grid-cols-2">
+            <Link href="/work/composio" className="group rounded-[24px] bg-[#f2f2f4] p-8 border border-transparent hover:border-[rgba(0,0,0,0.1)] transition-colors flex flex-col justify-between block">
+              <div>
+                <h3 className="text-2xl font-semibold text-[#1f1e1e] mb-2">Composio</h3>
+                <p className="text-[rgba(0,0,0,0.6)] leading-relaxed">
+                  A year of launches and the deck behind a $25M Series A.
+                </p>
+              </div>
+              <div className="text-[rgba(0,0,0,0.4)] text-sm font-mono mt-8">
+                2024 to 2025 · 4 artifacts
+              </div>
+            </Link>
+
+            <Link href="/work/contlo" className="group rounded-[24px] bg-[#f2f2f4] p-8 border border-transparent hover:border-[rgba(0,0,0,0.1)] transition-colors flex flex-col justify-between block">
+              <div>
+                <h3 className="text-2xl font-semibold text-[#1f1e1e] mb-2">Contlo / SuperAGI</h3>
+                <p className="text-[rgba(0,0,0,0.6)] leading-relaxed">
+                  Whitepaper, blog visuals and early brand marketing.
+                </p>
+              </div>
+              <div className="text-[rgba(0,0,0,0.4)] text-sm font-mono mt-8">
+                2024 · 2 artifacts
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Contact CTA */}
+      <section className="max-w-[1200px] mx-auto px-6 pb-24 text-center mt-10">
+         <div className="w-[100px] h-[100px] mx-auto rounded-[32px] bg-[#1f1e1e] flex items-center justify-center mb-8">
+             <div className="w-10 h-10 bg-white rounded-full"></div>
+         </div>
+         <h2 className="text-4xl md:text-5xl font-semibold text-[#1f1e1e] mb-4">
+            Let’s make something that moves.
+         </h2>
+         <p className="text-xl text-[rgba(0,0,0,0.5)] max-w-2xl mx-auto mb-10">
+            Roles, freelance, or a launch that needs to land. Astra, my assistant, takes the details.
+         </p>
+         <Link
             href="/astra"
-            className="inline-flex items-center gap-1 text-xs font-mono text-[var(--n-playhead)] hover:underline pt-2 font-semibold"
-          >
-            Talk to Astra →
-          </Link>
-        </section>
-      </div>
-
-      {/* SECTION 8: NOW & CONTACT */}
-      <section className="p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper-strong)] flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
-        <div className="space-y-2 text-center md:text-left">
-          <span className="text-xs font-mono text-[var(--n-playhead)] font-semibold">
-            ALIVE & SHIPPING
-          </span>
-          <h3 className="text-2xl font-medium">Have something difficult to explain, design, or make move?</h3>
-          <p className="text-xs text-[var(--n-graphite)] max-w-xl">
-            Currently founding designer at Entelligence AI. Open for high-impact launch motion and product collaboration.
-          </p>
-        </div>
-
-        <Link
-          href="/contact"
-          className="px-6 py-3 rounded-[var(--n-radius-control)] bg-[var(--n-charcoal)] text-[var(--n-paper)] font-mono text-xs font-medium hover:opacity-90 transition-opacity whitespace-nowrap shadow-xs"
-        >
-          Get in touch →
-        </Link>
+            className="inline-block px-8 py-4 rounded-[16px] bg-[#1f1e1e] text-white font-medium hover:opacity-90 transition-opacity"
+         >
+            Talk to Astra
+         </Link>
       </section>
     </div>
   );
