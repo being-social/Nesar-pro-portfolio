@@ -2,115 +2,105 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { Sun, Moon, Bot, Play } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
   const pathname = usePathname();
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const darkPref = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      if (darkPref) {
-        setIsDark(true);
-        document.documentElement.setAttribute("data-theme", "dark");
-        document.documentElement.classList.add("dark");
-      }
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    if (!isDark) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      document.documentElement.classList.remove("dark");
-    }
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const primaryNav = [
+    { href: "/", label: "Home" },
     { href: "/work", label: "Work" },
     { href: "/motion", label: "Motion" },
     { href: "/lab", label: "Lab" },
     { href: "/about", label: "About" },
   ];
 
-  const secondaryNav = [
-    { href: "/now", label: "Now" },
-    { href: "/contact", label: "Contact" },
-  ];
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[var(--n-line-soft)] bg-[var(--n-canvas)]/80 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Brand */}
-        <Link href="/" className="flex items-center gap-2 font-mono text-xs font-semibold tracking-tight group">
-          <span className="w-2.5 h-2.5 rounded-full bg-[var(--n-playhead)] group-hover:scale-125 transition-transform" />
-          <span className="text-[var(--n-ink)] font-bold">nesar.build</span>
-          <span className="hidden sm:inline text-[10px] text-[var(--n-muted)] font-mono ml-1">
-            [00:00:00:00]
-          </span>
-        </Link>
+    <div className="fixed top-4 sm:top-6 left-0 right-0 z-40 flex justify-center px-4 pointer-events-none">
+      <div className="relative">
+        <nav className="flex items-center gap-1 p-2 rounded-full bg-[rgba(252,252,252,0.85)] max-w-full overflow-hidden backdrop-blur-md shadow-sm border border-[rgba(0,0,0,0.06)] pointer-events-auto">
+          <Link
+            href="/"
+            className="flex shrink-0 items-center justify-center w-8 h-8 rounded-full bg-[#1f1e1e] text-white font-bold text-sm tracking-tight mr-1 sm:mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+            aria-label="Home"
+          >
+            N
+          </Link>
 
-        {/* Primary Navigation */}
-        <nav className="flex items-center gap-6 text-sm font-medium">
-          {primaryNav.map((item) => {
-            const active = pathname === item.href || pathname.startsWith(item.href + "/");
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`transition-colors relative py-1 ${
-                  active
-                    ? "text-[var(--n-ink)] font-semibold"
-                    : "text-[var(--n-graphite)] hover:text-[var(--n-ink)]"
-                }`}
-              >
-                {item.label}
-                {active && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--n-playhead)] rounded-full" />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Secondary + Controls */}
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-4 text-xs font-mono text-[var(--n-muted)] border-r border-[var(--n-line)] pr-4">
-            {secondaryNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="hover:text-[var(--n-ink)] transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-1">
+            {primaryNav.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] ${
+                    active ? "bg-[#1f1e1e] text-white" : "bg-transparent text-[var(--n-graphite)] hover:text-[#1f1e1e] hover:bg-[#f2f2f4]"
+                  }`}
+                  aria-current={active}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Astra Launcher */}
           <button
-            onClick={onOpenAstra}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-playhead)] text-xs font-mono transition-all shadow-xs"
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-transparent text-[#1f1e1e] hover:bg-[#f2f2f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
           >
-            <span className="w-2 h-2 rounded-full bg-[var(--n-playhead)] animate-pulse" />
-            <span className="text-[var(--n-ink)] font-semibold">◇ ASTRA</span>
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          {/* Theme Switcher */}
           <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 rounded-md border border-[var(--n-line)] hover:bg-[var(--n-line-soft)] transition-colors text-[var(--n-graphite)] hover:text-[var(--n-ink)]"
+            onClick={onOpenAstra}
+            className="ml-1 sm:ml-2 flex shrink-0 items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-[#1f1e1e] text-white text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
           >
-            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            Talk to Astra
           </button>
+        </nav>
+
+        <div
+          ref={menuRef}
+          aria-hidden={isOpen ? "true" : "false"}
+          inert={!isOpen}
+          className={`absolute top-full mt-2 left-0 right-0 p-4 rounded-2xl bg-[rgba(252,252,252,0.95)] backdrop-blur-md shadow-lg border border-[rgba(0,0,0,0.06)] md:hidden transition-all duration-200 pointer-events-auto origin-top ${
+            isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+          }`}
+        >
+          <div className="flex flex-col gap-2">
+            {primaryNav.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`px-4 py-3 rounded-xl text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] ${
+                    active ? "bg-[#1f1e1e] text-white" : "bg-[#f2f2f4] text-[#1f1e1e] hover:bg-[#e8e8e8]"
+                  }`}
+                  aria-current={active}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
