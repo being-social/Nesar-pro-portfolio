@@ -13,7 +13,7 @@ export default function WorkIndexPage() {
     <div className="space-y-16 py-8 max-w-6xl mx-auto">
       {/* Editorial Header */}
       <div className="border-b border-[var(--n-line)] pb-8 space-y-4">
-        <div className="text-xs font-mono text-[var(--n-playhead)] font-semibold uppercase tracking-wider">
+        <div className="text-xs font-mono text-[var(--n-graphite)] font-semibold uppercase tracking-wider">
           WORK INDEX
         </div>
         <h1 className="text-5xl sm:text-7xl font-medium tracking-tight text-[var(--n-ink)]">
@@ -29,11 +29,11 @@ export default function WorkIndexPage() {
         {/* Entelligence */}
         <Link
           href="/work/entelligence"
-          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-playhead)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
+          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
         >
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
-              <span className="text-[var(--n-playhead)] font-semibold">Entelligence AI</span>
+              <span className="text-[var(--n-ink)] font-semibold">Entelligence AI</span>
               <span>2025 to present</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[var(--n-ink)]">
@@ -43,7 +43,7 @@ export default function WorkIndexPage() {
               Product experience, brand, the live website in code, launch films, Entelligence Wrapped, the engineering Leaderboard, the design system, and the decks the founders take into fundraising.
             </p>
           </div>
-          <div className="flex items-center text-sm font-medium text-[var(--n-playhead)] group-hover:gap-2 gap-1 transition-all">
+          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-all">
             Read the case study
             <ArrowUpRight className="w-4 h-4" />
           </div>
@@ -52,11 +52,11 @@ export default function WorkIndexPage() {
         {/* Composio */}
         <Link
           href="/work/composio"
-          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-playhead)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
+          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
         >
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
-              <span className="text-[var(--n-playhead)] font-semibold">Composio</span>
+              <span className="text-[var(--n-ink)] font-semibold">Composio</span>
               <span>2023 to 2024</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[var(--n-ink)]">
@@ -66,7 +66,7 @@ export default function WorkIndexPage() {
               Design through a year of launches. The pitch deck behind the $25M Series A, the SWE-Kit developer site, the MCP launch creative, and the website redesign.
             </p>
           </div>
-          <div className="flex items-center text-sm font-medium text-[var(--n-playhead)] group-hover:gap-2 gap-1 transition-all">
+          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-all">
             Read the case study
             <ArrowUpRight className="w-4 h-4" />
           </div>
@@ -75,11 +75,11 @@ export default function WorkIndexPage() {
         {/* Contlo */}
         <Link
           href="/work/contlo"
-          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-playhead)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
+          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
         >
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
-              <span className="text-[var(--n-playhead)] font-semibold">Contlo</span>
+              <span className="text-[var(--n-ink)] font-semibold">Contlo</span>
               <span>Apr 2024 - Jun 2024</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[var(--n-ink)]">
@@ -89,7 +89,7 @@ export default function WorkIndexPage() {
               Creative / Marketing Design | Apr 2024 - Jun 2024. Marketing design for the brand, early ecosystem visuals, and launch copy across SuperAGI and whitepaper.
             </p>
           </div>
-          <div className="flex items-center text-sm font-medium text-[var(--n-playhead)] group-hover:gap-2 gap-1 transition-all">
+          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-all">
             Read the case study
             <ArrowUpRight className="w-4 h-4" />
           </div>
