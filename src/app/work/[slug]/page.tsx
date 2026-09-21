@@ -75,7 +75,7 @@ export default async function WorkDetailPage({ params }: Props) {
           <span className="text-[var(--n-playhead)] font-semibold">{project.company}</span>
           <span>{project.year}</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-[var(--n-ink)] leading-[1.1]">
+        <h1 className="text-[clamp(32px,8vw,64px)] font-medium leading-[1.05] tracking-tight text-[var(--n-ink)] leading-[1.1]">
           {project.title}
         </h1>
         <p className="text-xl md:text-2xl text-[var(--n-graphite)] font-serif italic max-w-3xl leading-relaxed">

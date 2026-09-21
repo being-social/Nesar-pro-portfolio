@@ -61,7 +61,7 @@ export default async function MotionDetailPage({ params }: Props) {
           <span>{piece.duration}</span>
           <span>{piece.fps} FPS</span>
         </div>
-        <h1 className="text-4xl font-medium tracking-tight text-[var(--n-ink)]">{piece.title}</h1>
+        <h1 className="text-[clamp(32px,8vw,48px)] font-medium leading-[1.05] tracking-tight text-[var(--n-ink)]">{piece.title}</h1>
         <p className="text-base text-[var(--n-graphite)] max-w-3xl leading-relaxed">{piece.summary}</p>
       </div>
 
