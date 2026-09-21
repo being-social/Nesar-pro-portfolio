@@ -19,7 +19,13 @@ export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
     { href: "/about", label: "About" },
   ];
 
-  // Close menu on escape
+  const getPageName = () => {
+    if (pathname === "/") return "Home";
+    const segment = pathname.split("/")[1];
+    if (!segment) return "";
+    return segment.charAt(0).toUpperCase() + segment.slice(1);
+  };
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -28,7 +34,6 @@ export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
   
-  // Theme check
   useEffect(() => {
     if (typeof window !== "undefined") {
       const isDarkPref = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -52,104 +57,133 @@ export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
   };
 
   return (
-    <div className="fixed top-4 sm:top-6 left-0 right-0 z-40 flex justify-center px-4 pointer-events-none">
-      <div className="relative">
-        <nav className="flex items-center gap-1 p-2 rounded-full bg-[var(--n-canvas)] bg-opacity-85 max-w-full overflow-hidden backdrop-blur-md shadow-sm border border-[var(--n-line-soft)] pointer-events-auto">
-          {/* Brand N Pill */}
+    <>
+      <div className="fixed top-4 sm:top-6 left-0 right-0 z-40 flex justify-center px-3 sm:px-4 pointer-events-none">
+        
+        {/* DESKTOP NAV */}
+        <nav className="hidden md:flex items-center gap-[2px] p-1.5 rounded-full bg-[var(--n-canvas)]/80 backdrop-blur-xl border border-[var(--n-line-soft)] shadow-sm pointer-events-auto max-w-[calc(100vw-20px)]">
+          
           <Link
             href="/"
-            className="flex shrink-0 items-center justify-center w-8 h-8 rounded-full bg-[var(--n-ink)] text-[var(--n-canvas)] font-bold text-sm tracking-tight mr-1 sm:mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+            className="flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-[var(--n-ink)] text-[var(--n-canvas)] font-bold text-sm tracking-tight mr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] hover:opacity-90 transition-opacity"
             aria-label="Home"
           >
             N
           </Link>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-1">
-            {primaryNav.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] ${
-                    active ? "bg-[var(--n-ink)] text-[var(--n-canvas)]" : "bg-transparent text-[var(--n-graphite)] hover:text-[var(--n-ink)] hover:bg-[var(--n-paper)]"
-                  }`}
-                  aria-current={active ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
+          {primaryNav.map((item) => {
+            const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-4 py-3 rounded-full text-sm font-medium transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] ${
+                  active ? "text-[var(--n-ink)]" : "text-[var(--n-graphite)] hover:text-[var(--n-ink)] hover:bg-[var(--n-paper)]"
+                }`}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
 
-          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-full text-[var(--n-graphite)] hover:text-[var(--n-ink)] hover:bg-[var(--n-paper)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] transition-colors"
+            className="flex shrink-0 items-center justify-center w-10 h-10 rounded-full text-[var(--n-graphite)] hover:text-[var(--n-ink)] hover:bg-[var(--n-paper)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] transition-colors mx-1"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-            aria-pressed={isDark}
           >
-            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {isDark ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
           </button>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-transparent text-[var(--n-ink)] hover:bg-[var(--n-paper)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-
-          {/* Astra Launcher */}
           <button
             onClick={onOpenAstra}
-            className="ml-1 sm:ml-2 flex shrink-0 items-center justify-center px-4 py-1.5 rounded-full bg-[var(--n-ink)] text-[var(--n-canvas)] text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+            className="ml-[2px] flex shrink-0 items-center justify-center px-4 py-3 rounded-full bg-[var(--n-ink)] text-[var(--n-canvas)] border border-[var(--n-graphite)] text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] whitespace-nowrap"
           >
             Talk to Astra
           </button>
         </nav>
 
-        {/* Mobile Dropdown Menu */}
-        <div
-          ref={menuRef}
-          aria-hidden={!isOpen}
-          inert={!isOpen}
-          className={`absolute top-full mt-2 left-0 right-0 p-4 rounded-2xl bg-[var(--n-canvas)] bg-opacity-95 backdrop-blur-md shadow-lg border border-[var(--n-line-soft)] md:hidden transition-all duration-200 pointer-events-auto origin-top ${
-            isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
-          }`}
+        {/* MOBILE NAV (stretches full width via flex-1 or w-full) */}
+        <nav 
+          className={`md:hidden flex flex-col items-stretch gap-0 p-[6px] transition-[border-radius] duration-200 pointer-events-auto bg-[var(--n-canvas)]/85 backdrop-blur-xl border border-[var(--n-line-soft)] shadow-sm w-full max-w-[800px] ${isOpen ? "rounded-[28px]" : "rounded-full"}`}
         >
-          <div className="flex flex-col gap-2">
-            {primaryNav.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-xl text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] ${
-                    active ? "bg-[var(--n-ink)] text-[var(--n-canvas)]" : "bg-[var(--n-paper)] text-[var(--n-ink)] hover:bg-[var(--n-line-soft)]"
-                  }`}
-                  aria-current={active ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            
-            {/* Mobile Theme Toggle */}
+          <div className="flex items-center justify-between gap-2 w-full">
+            <Link
+              href="/"
+              className="flex shrink-0 items-center justify-center w-[44px] h-[44px] rounded-full bg-[var(--n-ink)] text-[var(--n-canvas)] font-bold text-sm tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+              aria-label="Home"
+              onClick={() => setIsOpen(false)}
+            >
+              N
+            </Link>
+
+            <span className="text-sm font-medium text-[var(--n-muted)] flex-1 text-center truncate px-2">
+              {getPageName()}
+            </span>
+
+            {/* Talk to Astra - MUST BE BEFORE HAMBURGER */}
             <button
-               onClick={toggleTheme}
-               className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-[var(--n-ink)] bg-[var(--n-paper)] hover:bg-[var(--n-line-soft)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
-             >
-               <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
-               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-             </button>
+              onClick={() => {
+                setIsOpen(false);
+                onOpenAstra();
+              }}
+              className="flex shrink-0 items-center gap-2 h-[44px] px-4 rounded-full bg-[var(--n-ink)] text-[var(--n-canvas)] border border-[var(--n-graphite)] text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] whitespace-nowrap"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--n-canvas)] block"></span>
+              Astra
+            </button>
+
+            {/* Hamburger - MUST BE LAST */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex shrink-0 items-center justify-center w-[44px] h-[44px] rounded-full bg-[var(--n-paper-strong)] border border-[var(--n-line)] text-[var(--n-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
-        </div>
+
+          {/* Mobile Dropdown Area */}
+          <div
+            ref={menuRef}
+            aria-hidden={!isOpen}
+            inert={!isOpen ? true : undefined}
+            className={`grid transition-[grid-template-rows] duration-300 ${
+              isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+            }`}
+          >
+            <div className="overflow-hidden min-h-0">
+              <div className="pt-[10px] px-0 pb-0 flex flex-col gap-[2px]">
+                {primaryNav.map((item) => {
+                  const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center px-4 h-[48px] rounded-[14px] text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] ${
+                        active ? "text-[var(--n-playhead)]" : "bg-transparent text-[var(--n-graphite)] hover:text-[var(--n-ink)] hover:bg-[var(--n-paper)]"
+                      }`}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+                
+                <button
+                   onClick={toggleTheme}
+                   className="flex items-center justify-between px-4 h-[48px] rounded-[14px] text-base font-medium text-[var(--n-ink)] hover:bg-[var(--n-paper)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+                 >
+                   <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
+                   {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                 </button>
+              </div>
+            </div>
+          </div>
+        </nav>
       </div>
-    </div>
+    </>
   );
 }
