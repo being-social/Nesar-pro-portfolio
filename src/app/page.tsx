@@ -46,7 +46,7 @@ export default function HomePage() {
       {/* 2. I don't hand it off */}
       <section className="max-w-[1200px] mx-auto px-6">
         <h2 className="text-[clamp(28px,5vw,56px)] font-medium tracking-tight text-[var(--n-ink)] text-center">
-          I don&apos;t hand it off.
+          I don't hand it off.
         </h2>
         <p className="mt-8 text-base md:text-xl text-[var(--n-graphite)] font-medium max-w-3xl mx-auto leading-relaxed text-center">
           Founding design work at Entelligence AI, previously at Composio. I make the product, the film and the site. Then I write the code for the parts that have to feel exact.
@@ -117,7 +117,7 @@ export default function HomePage() {
             
             <div className="mt-5">
               <p className="text-xl font-semibold text-[var(--n-ink)]"></p>
-              <p className="mt-2 text-base text-[var(--n-graphite)] leading-relaxed max-w-[46ch]"></p>
+              <p className="mt-2 text-base font-medium text-[var(--n-graphite)] leading-relaxed max-w-[46ch]"></p>
             </div>
 
             <Link

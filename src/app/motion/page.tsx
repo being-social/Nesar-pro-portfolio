@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { Film, Play } from "lucide-react";
-import { MOTION_PIECES } from "@/lib/content/data";
-
-import type { Metadata } from 'next';
+import { Play } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Motion Archive — Nesar",
@@ -10,73 +8,107 @@ export const metadata: Metadata = {
   alternates: { canonical: "/motion" }
 };
 
-
 export default function MotionIndexPage() {
   return (
-    <div className="space-y-12 py-8">
-      <div className="space-y-4 max-w-2xl">
-        <div className="text-xs font-mono text-[var(--n-playhead)] font-semibold">
-          01 / MOTION ARCHIVE
-        </div>
-        <h1 className="text-4xl sm:text-6xl font-medium tracking-tight">Motion</h1>
-        <p className="text-sm text-[var(--n-graphite)] font-mono leading-relaxed">
-          Frames, transitions, launch films, interface motion, and the small timing decisions that make everything feel right.
-        </p>
-      </div>
+    <div data-page-root="true" style={{maxWidth: "1200px", margin: "0 auto", padding: "clamp(120px,18vw,140px) 24px 0"}}>
+      <h1 style={{fontSize: "clamp(32px,6vw,64px)", fontWeight: "500", lineHeight: "110%", letterSpacing: "-.05em", margin: "0", textAlign: "center"}}>
+        Films that make software make sense
+      </h1>
+      <p style={{fontSize: "20px", fontWeight: "500", lineHeight: "140%", color: "var(--n-graphite)", textAlign: "center", margin: "16px auto 0", maxWidth: "56ch"}}>
+        Direction, design and animation, and usually the page it ends up on
+      </p>
 
-      <div className="space-y-12">
-        {MOTION_PIECES.map((piece) => (
-          <div
-            key={piece.slug}
-            className="p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-6 shadow-xs"
-          >
-            <div className="aspect-video bg-[var(--n-paper-strong)] border border-[var(--n-line-soft)] rounded-[var(--n-radius-film)] p-6 flex flex-col justify-between relative overflow-hidden group">
-              <div className="flex justify-between text-xs font-mono text-[var(--n-muted)] z-10">
-                <span>{piece.duration}</span>
-                <span>{piece.fps} FPS</span>
-                <span>{piece.year}</span>
-              </div>
-
-              <div className="flex items-center justify-center z-10">
-                <Link
-                  href={`/motion/${piece.slug}`}
-                  className="w-16 h-16 rounded-full bg-[var(--n-playhead-soft)] flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
-                >
-                  <Play className="w-6 h-6 text-[var(--n-playhead)] fill-[var(--n-playhead)] ml-1" />
-                </Link>
-              </div>
-
-              <div className="flex justify-between text-xs font-mono text-[var(--n-playhead)] font-semibold z-10">
-                <span>{piece.client}</span>
-                <span>F_001</span>
-              </div>
+      <div style={{marginTop: "44px", display: "grid", gap: "16px"}}>
+        <Link
+          href="/motion/agent-insights"
+          style={{cursor: "pointer", border: "0", background: "var(--n-paper)", borderRadius: "24px", padding: "clamp(24px,4vw,44px)", textAlign: "left", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: "40px", alignItems: "center", textDecoration: "none"}}
+        >
+          <div style={{position: "relative", aspectRatio: "16/9", borderRadius: "24px", overflow: "hidden", background: "linear-gradient(180deg,var(--n-charcoal),var(--n-ink))"}}>
+            <div style={{position: "absolute", inset: "20%", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.3)"}}>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-              <div className="md:col-span-2 space-y-2">
-                <h2 className="text-2xl font-bold">{piece.title}</h2>
-                <p className="text-xs text-[var(--n-graphite)] leading-relaxed">{piece.summary}</p>
-              </div>
-
-              <div className="space-y-2 text-xs font-mono border-t md:border-t-0 md:border-l border-[var(--n-line-soft)] pt-4 md:pt-0 md:pl-6">
-                <div>
-                  <span className="text-[var(--n-muted)]">ROLE: </span>
-                  <span className="text-[var(--n-ink)]">{piece.role.join(", ")}</span>
-                </div>
-                <div>
-                  <span className="text-[var(--n-muted)]">TOOLS: </span>
-                  <span className="text-[var(--n-ink)]">{piece.tools?.join(", ")}</span>
-                </div>
-                <Link
-                  href={`/motion/${piece.slug}`}
-                  className="inline-block text-[var(--n-playhead)] font-bold hover:underline pt-2"
-                >
-                  View full breakdown →
-                </Link>
-              </div>
+            <div style={{position: "absolute", inset: "32%", background: "radial-gradient(circle at 36% 32%,var(--n-canvas),#8f8f8f 60%,var(--n-ink))"}}>
+            </div>
+            <div style={{position: "absolute", top: "0", bottom: "0", width: "1px", background: "rgba(255,255,255,0.8)", animation: "fRun 5s linear infinite"}}>
             </div>
           </div>
-        ))}
+          <div>
+            <p style={{fontSize: "26px", fontWeight: "600", lineHeight: "130%", margin: "0"}}>
+              Agent Insights launch film
+            </p>
+            <p style={{fontSize: "16px", fontWeight: "500", lineHeight: "140%", color: "var(--n-graphite)", margin: "10px 0 0"}}>
+              Explaining what an agent actually reads before it comments on your pull request.
+            </p>
+            <p style={{fontSize: "14px", fontWeight: "500", lineHeight: "140%", color: "var(--n-graphite)", margin: "14px 0 0"}}>
+              Entelligence · 2025 · D
+            </p>
+          </div>
+        </Link>
+
+        <Link
+          href="/work/entelligence/wrapped"
+          style={{cursor: "pointer", border: "0", background: "var(--n-paper)", borderRadius: "24px", padding: "clamp(24px,4vw,44px)", textAlign: "left", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: "40px", alignItems: "center", textDecoration: "none"}}
+        >
+          <div style={{position: "relative", aspectRatio: "16/9", borderRadius: "24px", overflow: "hidden", background: "linear-gradient(180deg,var(--n-charcoal),var(--n-ink))"}}>
+            <div style={{position: "absolute", inset: "20%", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.3)"}}>
+            </div>
+            <div style={{position: "absolute", inset: "32%", background: "radial-gradient(circle at 36% 32%,var(--n-canvas),#8f8f8f 60%,var(--n-ink))"}}>
+            </div>
+            <div style={{position: "absolute", top: "0", bottom: "0", width: "1px", background: "rgba(255,255,255,0.8)", animation: "fRun 5s linear infinite"}}>
+            </div>
+          </div>
+          <div>
+            <p style={{fontSize: "26px", fontWeight: "600", lineHeight: "130%", margin: "0"}}>
+              Entelligence Wrapped
+            </p>
+            <p style={{fontSize: "16px", fontWeight: "500", lineHeight: "140%", color: "var(--n-graphite)", margin: "10px 0 0"}}>
+              Year-in-review · 2025
+            </p>
+          </div>
+        </Link>
+
+        <Link
+          href="/work/composio/swe-kit"
+          style={{cursor: "pointer", border: "0", background: "var(--n-paper)", borderRadius: "24px", padding: "clamp(24px,4vw,44px)", textAlign: "left", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: "40px", alignItems: "center", textDecoration: "none"}}
+        >
+          <div style={{position: "relative", aspectRatio: "16/9", borderRadius: "24px", overflow: "hidden", background: "linear-gradient(180deg,var(--n-charcoal),var(--n-ink))"}}>
+            <div style={{position: "absolute", inset: "20%", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.3)"}}>
+            </div>
+            <div style={{position: "absolute", inset: "32%", background: "radial-gradient(circle at 36% 32%,var(--n-canvas),#8f8f8f 60%,var(--n-ink))"}}>
+            </div>
+            <div style={{position: "absolute", top: "0", bottom: "0", width: "1px", background: "rgba(255,255,255,0.8)", animation: "fRun 5s linear infinite"}}>
+            </div>
+          </div>
+          <div>
+            <p style={{fontSize: "26px", fontWeight: "600", lineHeight: "130%", margin: "0"}}>
+              SWE-Kit
+            </p>
+            <p style={{fontSize: "16px", fontWeight: "500", lineHeight: "140%", color: "var(--n-graphite)", margin: "10px 0 0"}}>
+              Developer Launch Site · 2023
+            </p>
+          </div>
+        </Link>
+
+        <Link
+          href="/work/composio/mcp-launch"
+          style={{cursor: "pointer", border: "0", background: "var(--n-paper)", borderRadius: "24px", padding: "clamp(24px,4vw,44px)", textAlign: "left", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: "40px", alignItems: "center", textDecoration: "none"}}
+        >
+          <div style={{position: "relative", aspectRatio: "16/9", borderRadius: "24px", overflow: "hidden", background: "linear-gradient(180deg,var(--n-charcoal),var(--n-ink))"}}>
+            <div style={{position: "absolute", inset: "20%", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.3)"}}>
+            </div>
+            <div style={{position: "absolute", inset: "32%", background: "radial-gradient(circle at 36% 32%,var(--n-canvas),#8f8f8f 60%,var(--n-ink))"}}>
+            </div>
+            <div style={{position: "absolute", top: "0", bottom: "0", width: "1px", background: "rgba(255,255,255,0.8)", animation: "fRun 5s linear infinite"}}>
+            </div>
+          </div>
+          <div>
+            <p style={{fontSize: "26px", fontWeight: "600", lineHeight: "130%", margin: "0"}}>
+              MCP Launch
+            </p>
+            <p style={{fontSize: "16px", fontWeight: "500", lineHeight: "140%", color: "var(--n-graphite)", margin: "10px 0 0"}}>
+              Model Context Protocol · 2024
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );
