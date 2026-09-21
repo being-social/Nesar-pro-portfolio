@@ -78,8 +78,8 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
               <div
                 className={`max-w-[85%] p-3 rounded-lg leading-relaxed ${
                   msg.sender === "user"
-                    ? "bg-[#1f1e1e] text-[#ffffff] border border-[#1f1e1e]"
-                    : "bg-[#ffffff] text-[#1f1e1e] border border-[rgb(232,232,232)]"
+                    ? "bg-[var(--n-ink)] text-[var(--n-canvas)] border border-[var(--n-ink)]"
+                    : "bg-[var(--n-paper-strong)] text-[var(--n-ink)] border border-[rgb(232,232,232)]"
                 }`}
               >
                 {msg.text}
