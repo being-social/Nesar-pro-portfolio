@@ -105,7 +105,7 @@ export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
 
         {/* MOBILE NAV (stretches full width via flex-1 or w-full) */}
         <nav 
-          className={`md:hidden flex flex-col items-stretch gap-0 p-[6px] transition-[border-radius] duration-200 pointer-events-auto bg-[var(--n-canvas)]/85 backdrop-blur-xl border border-[var(--n-line-soft)] shadow-sm w-full max-w-[800px] ${isOpen ? "rounded-[28px]" : "rounded-full"}`}
+          className={`md:hidden flex flex-col items-stretch gap-0 p-[6px] transition-all duration-300 pointer-events-auto bg-[var(--n-canvas)]/85 backdrop-blur-xl border border-[var(--n-line-soft)] shadow-sm w-full max-w-[800px] ease-[cubic-bezier(.2,.8,.2,1)] ${isOpen ? "rounded-[28px]" : "rounded-[28px]"}`}
         >
           <div className="flex items-center justify-between gap-2 w-full">
             <Link
@@ -140,7 +140,11 @@ export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              <div className="relative w-4 h-4 flex flex-col justify-center items-center">
+                <span className={`absolute h-[2px] w-full bg-current transform transition-all duration-300 ease-[cubic-bezier(.2,.8,.2,1)] ${isOpen ? "rotate-45" : "-translate-y-[5px]"}`}></span>
+                <span className={`absolute h-[2px] w-full bg-current transform transition-all duration-300 ease-[cubic-bezier(.2,.8,.2,1)] ${isOpen ? "opacity-0" : "opacity-100"}`}></span>
+                <span className={`absolute h-[2px] w-full bg-current transform transition-all duration-300 ease-[cubic-bezier(.2,.8,.2,1)] ${isOpen ? "-rotate-45" : "translate-y-[5px]"}`}></span>
+              </div>
             </button>
           </div>
 
@@ -149,7 +153,7 @@ export function Navbar({ onOpenAstra }: { onOpenAstra: () => void }) {
             ref={menuRef}
             aria-hidden={!isOpen}
             inert={!isOpen ? true : undefined}
-            className={`grid transition-[grid-template-rows] duration-300 ${
+            className={`grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(.32,.72,0,1)] ${
               isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
             }`}
           >
