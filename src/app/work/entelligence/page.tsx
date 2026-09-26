@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function EntelligenceCaseStudy() {
   return (
     <div className="space-y-12 py-12 max-w-4xl mx-auto">
-      <Link href="/work" className="text-xs font-mono text-[var(--n-playhead)] hover:underline">
+      <Link href="/work" className="text-xs font-mono text-[var(--n-ink)] hover:underline">
         ← Back to Work
       </Link>
 

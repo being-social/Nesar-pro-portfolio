@@ -1,30 +1,26 @@
-import Link from "next/link";
-import { CheckCircle2, Bot, Layers } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { ArtifactLayout, FeatureBulletList } from "@/components/ArtifactLayout";
 
 export default function AgentInsightsArtifact() {
+  const uxFeatures = [
+    { label: "High-Density Information Architecture", text: "Structured split views for multi-file diffs without overwhelming dev leads." },
+    { label: "Incident Provenance", text: "Every flagged bug links directly back to the exact historical production incident that caused it." },
+    { label: "Confidence Rating UI", text: "Subdued, color-coded indicators so developers immediately know high-severity risks vs minor suggestions." },
+  ];
+
   return (
-    <div className="space-y-12 py-8 max-w-4xl mx-auto">
-      <Link href="/work/entelligence" className="text-xs font-mono text-[var(--n-playhead)] hover:underline">
-        ← Back to Entelligence AI Case Study
-      </Link>
-
-      <div className="space-y-4">
-        <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
-          <span className="text-[var(--n-playhead)] font-semibold">ENTELLIGENCE AI // ARTIFACT</span>
-          <span>PRODUCT UX</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-[var(--n-ink)]">
-          DeepReviews & Agent Insights UX
-        </h1>
-        <p className="text-lg text-[var(--n-graphite)] font-serif italic">
-          Designing the experience for an AI code review engine that reads full codebase history.
-        </p>
-      </div>
-
+    <ArtifactLayout
+      backHref="/work/entelligence"
+      backLabel="← Back to Entelligence AI Case Study"
+      category="ENTELLIGENCE AI // ARTIFACT"
+      tag="PRODUCT UX"
+      title="DeepReviews & Agent Insights UX"
+      subtitle="Designing the experience for an AI code review engine that reads full codebase history."
+    >
       <div className="p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-6 shadow-xs font-mono text-xs">
         <div className="flex justify-between items-center text-[var(--n-muted)] border-b border-[var(--n-line-soft)] pb-4">
           <span>SURFACE: DeepReviews / PR Reviewer</span>
-          <span className="text-[var(--n-playhead)] font-semibold flex items-center gap-1">
+          <span className="text-[var(--n-ink)] font-semibold flex items-center gap-1">
             <CheckCircle2 className="w-3.5 h-3.5" /> SHIPPED PRODUCT
           </span>
         </div>
@@ -35,13 +31,9 @@ export default function AgentInsightsArtifact() {
           </p>
 
           <h3 className="text-base font-bold text-[var(--n-ink)] font-mono pt-2">UX Challenges & Decisions:</h3>
-          <ul className="list-disc list-inside space-y-2 font-mono text-xs text-[var(--n-graphite)]">
-            <li><strong>High-Density Information Architecture:</strong> Structured split views for multi-file diffs without overwhelming dev leads.</li>
-            <li><strong>Incident Provenance:</strong> Every flagged bug links directly back to the exact historical production incident that caused it.</li>
-            <li><strong>Confidence Rating UI:</strong> Subdued, color-coded indicators so developers immediately know high-severity risks vs minor suggestions.</li>
-          </ul>
+          <FeatureBulletList items={uxFeatures} />
         </div>
       </div>
-    </div>
+    </ArtifactLayout>
   );
 }

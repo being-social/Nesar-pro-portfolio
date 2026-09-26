@@ -66,13 +66,13 @@ export default async function WorkDetailPage({ params }: Props) {
 
   return (
     <div className="space-y-16 py-16 px-4 sm:px-6 max-w-[1280px] mx-auto">
-      <Link href="/work" className="inline-flex min-h-[44px] items-center text-xs font-mono text-[var(--n-playhead)] hover:underline -ml-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] rounded-md">
+      <Link href="/work" className="inline-flex min-h-[44px] items-center text-xs font-mono text-[var(--n-ink)] hover:underline -ml-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] rounded-md">
         ← Back to Selected Work
       </Link>
 
       <div className="space-y-6 max-w-4xl">
         <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
-          <span className="text-[var(--n-playhead)] font-semibold">{project.company}</span>
+          <span className="text-[var(--n-ink)] font-semibold">{project.company}</span>
           <span>{project.year}</span>
         </div>
         <h1 className="text-[clamp(32px,8vw,64px)] font-medium leading-[1.05] tracking-tight text-[var(--n-ink)] leading-[1.1]">
@@ -88,7 +88,7 @@ export default async function WorkDetailPage({ params }: Props) {
               href={project.publicUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-mono text-[var(--n-playhead)] font-bold hover:underline transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] px-4 py-2 bg-[var(--n-paper)] border border-[var(--n-line)] rounded-lg"
+              className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-mono text-[var(--n-ink)] font-bold hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)] px-4 py-2 bg-[var(--n-paper)] border border-[var(--n-line)] rounded-lg"
             >
               Visit Live Site <ArrowUpRight className="w-4 h-4" />
             </a>
@@ -105,13 +105,13 @@ export default async function WorkDetailPage({ params }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {artifacts.map((art, idx) => (
               <Link
-                key={idx}
+                key={art.href}
                 href={art.href}
-                className="group p-6 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-3 hover:border-[var(--n-playhead)] transition-all min-h-[44px] block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
+                className="group p-6 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-3 hover:border-[var(--n-playhead)] transition-colors min-h-[44px] block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--n-playhead)]"
               >
                 <div className="flex items-start justify-between">
-                  <h4 className="text-base font-bold text-[var(--n-ink)] group-hover:text-[var(--n-playhead)] transition-colors">{art.title}</h4>
-                  <ArrowUpRight className="w-4 h-4 text-[var(--n-muted)] group-hover:text-[var(--n-playhead)] transition-colors" />
+                  <h4 className="text-base font-bold text-[var(--n-ink)] group-hover:text-[var(--n-ink)] transition-colors">{art.title}</h4>
+                  <ArrowUpRight className="w-4 h-4 text-[var(--n-muted)] group-hover:text-[var(--n-ink)] transition-colors" />
                 </div>
                 <p className="text-sm text-[var(--n-graphite)] leading-relaxed">{art.desc}</p>
               </Link>
@@ -129,7 +129,7 @@ export default async function WorkDetailPage({ params }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {chapters.map((ch) => (
             <div key={ch.id} className="p-6 rounded-[var(--n-radius-card)] border border-[var(--n-line)] bg-[var(--n-paper)] space-y-3">
-              <span className="text-sm font-mono text-[var(--n-playhead)] font-bold block">{ch.id} / {ch.title}</span>
+              <span className="text-sm font-mono text-[var(--n-ink)] font-bold block">{ch.id} / {ch.title}</span>
               <p className="text-sm text-[var(--n-graphite)] leading-relaxed">{ch.text}</p>
             </div>
           ))}

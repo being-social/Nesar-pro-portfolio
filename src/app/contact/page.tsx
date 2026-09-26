@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 
-type Msg = { text: string; from: "astra" | "user" };
+type Msg = { id: string; text: string; from: "astra" | "user" };
 
 const STARTERS = [
   { id: "work", label: "See the work" },
@@ -42,13 +42,15 @@ export default function ContactPage() {
   const send = (text: string, id?: string) => {
     const trimmed = text.trim();
     if (!trimmed) return;
-    setMessages((m) => [...m, { text: trimmed, from: "user" }]);
+    const userMsgId = `u-${Date.now()}-${Math.random()}`;
+    setMessages((m) => [...m, { id: userMsgId, text: trimmed, from: "user" }]);
     setDraft("");
     setShowQuick(false);
     setStep("reply");
     const reply = astraReply(id || "", trimmed);
     setTimeout(() => {
-      setMessages((m) => [...m, { text: reply, from: "astra" }]);
+      const astraMsgId = `a-${Date.now()}-${Math.random()}`;
+      setMessages((m) => [...m, { id: astraMsgId, text: reply, from: "astra" }]);
       setStep("ready");
     }, 280);
   };
@@ -110,9 +112,9 @@ export default function ContactPage() {
               </p>
             </div>
           )}
-          {messages.map((m, i) => (
+          {messages.map((m) => (
             <div
-              key={i}
+              key={m.id}
               style={{
                 maxWidth: "86%",
                 padding: "12px 16px",
@@ -158,9 +160,10 @@ export default function ContactPage() {
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             placeholder="Type a message..."
+            aria-label="Type a message"
             style={{ flex: 1, border: "1px solid var(--n-line)", background: "var(--n-paper-strong)", borderRadius: 16, padding: "14px 18px", fontSize: 16, fontWeight: 500, color: "var(--n-ink)", outline: "none", minWidth: 0 }}
           />
-          <button type="submit" style={{ cursor: "pointer", background: "var(--n-ink)", color: "var(--n-canvas)", border: "1px solid var(--n-line)", borderRadius: 16, padding: "14px 22px", fontSize: 14, fontWeight: 500, lineHeight: "120%", flex: "none" }}>
+          <button type="submit" aria-label="Send message" style={{ cursor: "pointer", background: "var(--n-ink)", color: "var(--n-canvas)", border: "1px solid var(--n-line)", borderRadius: 16, padding: "14px 22px", fontSize: 14, fontWeight: 500, lineHeight: "120%", flex: "none" }}>
             Send
           </button>
         </form>

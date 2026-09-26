@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { X, Send, Bot, Sparkles } from "lucide-react";
+import { X, Send, Bot } from "lucide-react";
 
 interface Message {
+  id: string;
   sender: "user" | "astra";
   text: string;
 }
@@ -12,6 +13,7 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
+      id: "init",
       sender: "astra",
       text: "Astra here, Nesar's assistant.",
     },
@@ -24,7 +26,7 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
     const text = textToSend || input;
     if (!text.trim() || loading) return;
 
-    setMessages((prev) => [...prev, { sender: "user", text }]);
+    setMessages((prev) => [...prev, { id: `user-${Date.now()}`, sender: "user", text }]);
     setInput("");
     setLoading(true);
 
@@ -34,10 +36,13 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
       });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
       const data = await res.json();
-      setMessages((prev) => [...prev, { sender: "astra", text: data.response || "Something broke." }]);
+      setMessages((prev) => [...prev, { id: `astra-${Date.now()}`, sender: "astra", text: data.response || "Something broke." }]);
     } catch {
-      setMessages((prev) => [...prev, { sender: "astra", text: "Network glitch. Try asking again." }]);
+      setMessages((prev) => [...prev, { id: `astra-err-${Date.now()}`, sender: "astra", text: "Network glitch. Try asking again." }]);
     } finally {
       setLoading(false);
     }
@@ -46,7 +51,6 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
   const chips = [
     "I'm hiring",
     "I have a project",
-    "Book a call",
     "Just a question"
   ];
 
@@ -56,7 +60,7 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
         {/* Header */}
         <div className="p-4 border-b border-[var(--n-line)] flex items-center justify-between">
           <div className="flex items-center gap-2 font-mono text-sm font-semibold">
-            <Bot className="w-4 h-4 text-[var(--n-playhead)]" />
+            <Bot className="w-4 h-4 text-[var(--n-ink)]" />
             <span className="text-[var(--n-ink)]">Astra</span>
           </div>
           <button
@@ -70,16 +74,16 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 
         {/* Message Log */}
         <div className="flex-1 p-4 overflow-y-auto space-y-4 font-sans text-sm">
-          {messages.map((msg, i) => (
+          {messages.map((msg) => (
             <div
-              key={i}
+              key={msg.id}
               className={`flex flex-col ${msg.sender === "user" ? "items-end" : "items-start"}`}
             >
               <div
                 className={`max-w-[85%] p-3 rounded-lg leading-relaxed ${
                   msg.sender === "user"
                     ? "bg-[var(--n-ink)] text-[var(--n-canvas)] border border-[var(--n-ink)]"
-                    : "bg-[var(--n-paper-strong)] text-[var(--n-ink)] border border-[rgb(232,232,232)]"
+                    : "bg-[var(--n-paper-strong)] text-[var(--n-ink)] border border-[var(--n-line)]"
                 }`}
               >
                 {msg.text}
@@ -93,11 +97,11 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 
         {/* Chips */}
         <div className="p-3 border-t border-[var(--n-line)] flex gap-2 overflow-x-auto text-[11px] font-mono">
-          {chips.map((chip, idx) => (
+          {chips.map((chip) => (
             <button
-              key={idx}
+              key={chip}
               onClick={() => handleSend(chip)}
-              className="whitespace-nowrap px-3 py-1.5 rounded border border-[var(--n-line)] hover:border-[var(--n-playhead)] hover:text-[var(--n-playhead)] transition-colors text-[var(--n-graphite)]"
+              className="whitespace-nowrap px-3 py-1.5 rounded border border-[var(--n-line)] hover:border-[var(--n-ink)] hover:text-[var(--n-ink)] transition-colors text-[var(--n-graphite)]"
             >
               {chip}
             </button>
@@ -112,10 +116,12 @@ export function AstraDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
             placeholder="Type your message..."
-            className="flex-1 bg-[var(--n-paper)] border border-[var(--n-line)] rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[var(--n-playhead)]"
+            aria-label="Type your message"
+            className="flex-1 bg-[var(--n-paper)] border border-[var(--n-line)] rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[var(--n-ink)]"
           />
           <button
             onClick={() => handleSend()}
+            aria-label="Send message"
             className="p-2 bg-[var(--n-ink)] text-[var(--n-paper)] rounded-md hover:opacity-90 transition-opacity"
           >
             <Send className="w-4 h-4" />

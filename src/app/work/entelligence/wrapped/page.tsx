@@ -4,13 +4,13 @@ import { Film, Play } from "lucide-react";
 export default function WrappedArtifact() {
   return (
     <div className="space-y-12 py-8 max-w-4xl mx-auto">
-      <Link href="/work/entelligence" className="text-xs font-mono text-[var(--n-playhead)] hover:underline">
+      <Link href="/work/entelligence" className="text-xs font-mono text-[var(--n-ink)] hover:underline">
         ← Back to Entelligence AI Case Study
       </Link>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
-          <span className="text-[var(--n-playhead)] font-semibold">ENTELLIGENCE AI // ARTIFACT</span>
+          <span className="text-[var(--n-ink)] font-semibold">ENTELLIGENCE AI // ARTIFACT</span>
           <span>KINETIC MOTION STORYTELLING</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-[var(--n-ink)]">
@@ -29,10 +29,10 @@ export default function WrappedArtifact() {
           </div>
           <div className="flex items-center justify-center">
             <div className="w-16 h-16 rounded-full bg-[var(--n-playhead-soft)] flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-              <Play className="w-6 h-6 text-[var(--n-playhead)] fill-[var(--n-playhead)] ml-1" />
+              <Play className="w-6 h-6 text-[var(--n-ink)] fill-[var(--n-playhead)] ml-1" />
             </div>
           </div>
-          <div className="text-xs text-[var(--n-playhead)] font-semibold">ENTELLIGENCE MOTION SYSTEM</div>
+          <div className="text-xs text-[var(--n-ink)] font-semibold">ENTELLIGENCE MOTION SYSTEM</div>
         </div>
 
         <div className="space-y-2 text-sm text-[var(--n-graphite)] font-sans">

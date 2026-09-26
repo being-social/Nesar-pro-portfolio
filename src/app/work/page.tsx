@@ -29,7 +29,7 @@ export default function WorkIndexPage() {
         {/* Entelligence */}
         <Link
           href="/work/entelligence"
-          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
+          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-colors flex flex-col justify-between space-y-6 shadow-xs"
         >
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
@@ -43,7 +43,7 @@ export default function WorkIndexPage() {
               Product experience, brand, the live website in code, launch films, Entelligence Wrapped, the engineering Leaderboard, the design system, and the decks the founders take into fundraising.
             </p>
           </div>
-          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-all">
+          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-colors">
             Read the case study
             <ArrowUpRight className="w-4 h-4" />
           </div>
@@ -52,7 +52,7 @@ export default function WorkIndexPage() {
         {/* Composio */}
         <Link
           href="/work/composio"
-          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
+          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-colors flex flex-col justify-between space-y-6 shadow-xs"
         >
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
@@ -66,7 +66,7 @@ export default function WorkIndexPage() {
               Design through a year of launches. The pitch deck behind the $25M Series A, the SWE-Kit developer site, the MCP launch creative, and the website redesign.
             </p>
           </div>
-          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-all">
+          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-colors">
             Read the case study
             <ArrowUpRight className="w-4 h-4" />
           </div>
@@ -75,7 +75,7 @@ export default function WorkIndexPage() {
         {/* Contlo */}
         <Link
           href="/work/contlo"
-          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-all flex flex-col justify-between space-y-6 shadow-xs"
+          className="group p-8 rounded-[var(--n-radius-panel)] border border-[var(--n-line)] bg-[var(--n-paper)] hover:border-[var(--n-ink)] transition-colors flex flex-col justify-between space-y-6 shadow-xs"
         >
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[var(--n-muted)]">
@@ -89,7 +89,7 @@ export default function WorkIndexPage() {
               Creative / Marketing Design | Apr 2024 - Jun 2024. Marketing design for the brand, early ecosystem visuals, and launch copy across SuperAGI and whitepaper.
             </p>
           </div>
-          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-all">
+          <div className="flex items-center text-sm font-medium text-[var(--n-ink)] group-hover:gap-2 gap-1 transition-colors">
             Read the case study
             <ArrowUpRight className="w-4 h-4" />
           </div>
